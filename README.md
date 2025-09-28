@@ -34,16 +34,4 @@ CSS3 – styling, animations
 
 JavaScript (ES6) – game logic
 
-📸 Screenshots
 
-(Add screenshots of your game here)
-
-💡 Future Improvements
-
-🔊 Add sound effects
-
-🏆 High score system
-
-🌈 More themes/skins
-
-👾 Difficulty levels
