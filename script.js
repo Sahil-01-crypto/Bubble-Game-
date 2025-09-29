@@ -1,7 +1,7 @@
 var timer = 60;
 var score = 0;
 var hitnum = 0;
-var timerint;
+var timerval;
 function scorechanger() {
     score += 10;
     document.querySelector("#scoreval").textContent = score;
@@ -25,21 +25,26 @@ function makeBubble() {
 
 
 function workTimer() {
-    timerint = setInterval(function () {
+
+    timerval=setInterval(function () {
         if (timer > 0) {
             timer--;
             document.querySelector("#timerval").textContent = timer;
         }
         else {
-            clearInterval(timerint);
-            document.querySelector("#lower").innerHTML = `
-      <div id="gameover">
+            clearInterval(timerval);
+            document.querySelector(".end").innerHTML=
+             `<div id="gameover">
                <h1>GAME OVER</h1>
                <h2>Your Score: ${score}</h2>
                <button id="retryBtn">Retry</button>
-            </div>
-         `;
+               <button id="home"> Menu </button>
+            </div>`
+            document.querySelector("#panel").style.display="none"
+            document.querySelector("#gameover").style.display="block"
 
+
+            document.querySelector("#home").addEventListener("click" , homepage);
             document.querySelector("#retryBtn").addEventListener("click", resetGame);
 
         }
@@ -49,9 +54,11 @@ function workTimer() {
 function resetGame() {
     score = 0;
     timer = 60;
-
+    
     document.querySelector("#scoreval").innerHTML = score;
     document.querySelector("#timerval").innerHTML = timer;
+     document.querySelector("#gameover").style.display="none"
+    document.querySelector("#panel").style.display="block"
 
     makeBubble();
     workTimer();
@@ -59,6 +66,16 @@ function resetGame() {
 
 }
 
+function homepage(){
+   
+    document.querySelector("#gameover").style.display="none"
+     document.querySelector("#menu").style.display="block"
+     document.querySelector("#startBtn").addEventListener("click" , ()=>{
+        timer = 60 ;
+        document.querySelector("#timerval").innerHTML=timer ;
+        workTimer();
+     } );
+}
 
 document.querySelector("#lower").addEventListener("click", function (details) {
     var num = Number(details.target.textContent);
